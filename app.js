@@ -94,9 +94,9 @@ res.render('account', req.user);
 
 });
 
-// app.get('/login', function(req, res){
-//   res.render('login', { user: req.user });
-// });
+app.get('/login', function(req, res){
+  res.render('index');
+});
 
 // GET /auth/github
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -126,7 +126,7 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.listen(PORT);
+app.listen(PORTidy);
 
 
 // Simple route middleware to ensure user is authenticated.
