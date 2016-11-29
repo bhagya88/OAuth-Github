@@ -13,6 +13,14 @@ var GITHUB_CLIENT_SECRET = "b1616763c3691d72d1ef4f46cc3fd189d6a9c24f";
 
 // set the port
 var PORT = process.env.PORT || 3000;
+
+
+var URL = "";
+if (process.env.NODE_ENV == "production") {
+ URL = "https://stark-brook-40191.herokuapp.com";
+} else {
+ URL = "http://127.0.0.1:3000";
+}
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
 //   serialize users into and deserialize users out of the session.  Typically,
@@ -40,7 +48,7 @@ passport.use(new GitHubStrategy({
    // callbackURL: "https://rocky-taiga-37422.heroku0app.com/auth/heroku/callback"
   clientID:GITHUB_CLIENT_ID,
   clientSecret:GITHUB_CLIENT_SECRET,
-  callbackURL:"https://stark-brook-40191.herokuapp.com/auth/github/callback"
+  callbackURL:URL +"/auth/github/callback"
 
   },
   function(accessToken, refreshToken, profile, done) {
@@ -126,7 +134,7 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.listen(PORTidy);
+app.listen(PORT);
 
 
 // Simple route middleware to ensure user is authenticated.
